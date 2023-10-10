@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, FlatList} from 'react-native';
 import Header from './components/header';
 import TodoItem from './components/todo';
+import AddTodo from './components/form';
+import { preprocess } from 'react-native-web/dist/cjs/exports/StyleSheet/preprocess';
 
 export default function App() {
 
@@ -17,11 +19,20 @@ export default function App() {
     });
   }
 
+  const addTaskHandler = (val) => {
+    setTodos((prevTodos) => {
+      return [
+        { text: val, key: Math.random().toString() },
+        ...prevTodos
+      ];
+    })
+  }
+
   return (
     <View style={styles.container}>
        <Header />
        <View style={styles.content}>
-          {/* to do form */}
+          <AddTodo addToList={addTaskHandler}/>
           <View style={styles.list}>
             <FlatList  
               data={todos}

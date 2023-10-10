@@ -11,6 +11,7 @@ export default function AddTodo({ addToList }) {
     
     const submitHandler = () => {
         addToList(name);
+        setName('');
     }
 
     return (
@@ -19,6 +20,7 @@ export default function AddTodo({ addToList }) {
                 style={styles.input}
                 placeholder="ex. buy Mozzarella"
                 onChangeText={changeHandler}
+                value={name}
             />
             <Button title="Add Task" color='coral' onPress={submitHandler} />
         </View>

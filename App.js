@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList} from 'react-native';
 import Header from './components/header';
 import TodoItem from './components/todo';
 import AddTodo from './components/form';
-import { preprocess } from 'react-native-web/dist/cjs/exports/StyleSheet/preprocess';
+
 
 export default function App() {
 

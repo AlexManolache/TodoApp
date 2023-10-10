@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { StyleSheet, View, Text, TextInput, Button } from "react-native";
+import { StyleSheet, View, Text, TextInput, Button, Alert } from "react-native";
 
 export default function AddTodo({ addToList }) {
 
@@ -10,8 +10,14 @@ export default function AddTodo({ addToList }) {
     }
     
     const submitHandler = () => {
-        addToList(name);
-        setName('');
+        if(name.trim().length > 0) {
+            addToList(name);
+            setName('');
+        } else {
+            Alert.alert('OOPS!', 'Cannot be added empty value', [
+                {text: 'Understood'}, 
+            ]);
+        }
     }
 
     return (

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList, TouchableWithoutFeedback, Keyboard} f
 import Header from './components/header';
 import TodoItem from './components/todo';
 import AddTodo from './components/form';
+import EmptyList from './components/empty';
 
 
 export default function App() {
@@ -36,14 +37,18 @@ export default function App() {
         <Header />
         <View style={styles.content}>
             <AddTodo addToList={addTaskHandler}/>
-            <View style={styles.list}>
-              <FlatList  
-                data={todos}
-                renderItem={({ item }) => (
-                  <TodoItem item={item} deteleTask={deleteTaskHandler}/>
-                )}
-              />
-            </View>
+            {
+                todos.length > 0 ? 
+                <View style={styles.list}>
+                  <FlatList  
+                    data={todos}
+                    renderItem={({ item }) => (
+                      <TodoItem item={item} deteleTask={deleteTaskHandler}/>
+                    )}
+                  />
+                </View> :
+                <EmptyList />
+            }
         </View>
 
       </View>
@@ -57,9 +62,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   content: {
-   padding: 40,
+    flex: 1,
+   padding: 40
   },
   list: {
+    flex: 1,
     marginTop: 20,
+    flexDirection: 'row'
   }
+
 });
